@@ -30,6 +30,9 @@ class Parser:
     def __init__(self):
         self.scanner = Scanner()
 
+    def feed(self, s):
+        self.scanner.feed(s)
+
     def parse(self):
         return self.parseExp(self.scanner.get_next_token())
 

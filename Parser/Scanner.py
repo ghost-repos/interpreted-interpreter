@@ -27,11 +27,10 @@ class Scanner:
     def unshift_buffer(self, s):
         self.buf = [s] + self.buf
 
+    def feed(self, s):
+        self.buf += list(s)
+
     def get_next_token(self):
-
-        if (len(self.buf) < 1):
-            self.buf += list(input())
-
         ch = self.shift_buffer()
         while ch in Scanner.whitespace_chars:
             ch = self.shift_buffer()

@@ -1,7 +1,7 @@
 from Tree.Node import Node
 
 class NilNode(Node):
-    def is_null():
+    def is_null(self):
         return True
 
     def print(self, i):

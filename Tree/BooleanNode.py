@@ -4,7 +4,7 @@ class BooleanNode(Node):
     def __init__ (self, val):
         self.bool_val = val
 
-    def is_bool():
+    def is_bool(self):
         return True
 
     def print(self, i):
@@ -13,6 +13,9 @@ class BooleanNode(Node):
             print("#t")
         else:
             print("#f")
+
+    def eval(self, env):
+        return self
 
 true_node = BooleanNode(True)
 false_node = BooleanNode(False)
