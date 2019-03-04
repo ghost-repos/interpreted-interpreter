@@ -1,6 +1,6 @@
-import IntNode, StringNode, IdentNode, ConsNode
-from NilNode import nil_node
-from BooleanNode import true_node, false_node
+import Tree.IntNode, Tree.StringNode, Tree.IdentNode, Tree.ConsNode
+from Tree.NilNode import nil_node
+from Tree.BooleanNode import true_node, false_node
 
 class TreeBuilder:
     def build_boolean_node(self, b):

@@ -1,4 +1,4 @@
-from Node import Node
+from Tree.Node import Node
 
 class IntNode(Node):
     def __init__(self, i):
@@ -6,3 +6,6 @@ class IntNode(Node):
 
     def is_number():
         return True
+
+    def print(self, i):
+        print("%s%s" % (" " * i, self.val))

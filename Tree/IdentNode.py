@@ -1,4 +1,4 @@
-from Node import Node
+from Tree.Node import Node
 
 class IdentNode(Node):
     def __init__(self, n):
@@ -6,3 +6,6 @@ class IdentNode(Node):
 
     def is_symbol():
         return True
+
+    def print(self, i):
+        print("%s%s" % (" " * i, self.name))

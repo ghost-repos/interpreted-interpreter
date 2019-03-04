@@ -1,4 +1,4 @@
-from Node import Node
+from Tree.Node import Node
 
 class StringNode(Node):
     def __init__(self, s):
@@ -6,3 +6,6 @@ class StringNode(Node):
 
     def is_string():
         return True
+
+    def print(self, i):
+        print("%s%s" % (" " * i, self.val))

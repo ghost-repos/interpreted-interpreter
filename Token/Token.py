@@ -5,11 +5,11 @@ class Token:
     def get_type(self):
         return self.type
 
-    def get_int_val():
+    def get_int_val(self):
         return 0
 
-    def get_string_val():
+    def get_string_val(self):
         return ""
 
-    def get_name():
+    def get_name(self):
         return ""
