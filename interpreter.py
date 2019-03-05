@@ -9,13 +9,14 @@ from Tree.IdentNode import IdentNode
 parser = Parser()
 builder = TreeBuilder()
 built_in_env = Environment()
-built_in_env.define(IdentNode("b+"), BuiltInNode("b+"))
-global_env = Environment(built_in_env)
+built_ins = ["newline", "write", "car", "cdr", "null?", "pair?", "procedure?", \
+        "symbol?", "number?", "display", "b-", "b+", "b*", "b/", "b=", "b<", \
+        "eq?", "cons", "apply", "eval", "set-car!", "set-cdr!"]
 
-# example code, b+ is binary +
-# parser.feed("(b+ 1 (b+ 3 4))")
-# root = parser.parse()
-# root.eval(global_env).print(0)
+for built_in in built_ins:
+    built_in_env.define(IdentNode(built_in), BuiltInNode(built_in))
+
+global_env = Environment(built_in_env)
 
 try:
     while True:
