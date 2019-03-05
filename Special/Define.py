@@ -15,4 +15,16 @@ class Define(Special):
             val = node.get_cdr().get_cdr().get_car().eval(env)
             ident = node.get_cdr().get_car()
             env.define(ident, val)
-        return nil_node
+        return val
+
+    def print(self, node, i, p=True):
+        if not p:
+            print()
+            print("%s(" % (" " * i), end="")
+            i += 4
+
+        print("define ", end="")
+        node.get_cdr().print(i, True) # doesn't work nice with nested procedures
+
+        if not p:
+            print(")", end="")
