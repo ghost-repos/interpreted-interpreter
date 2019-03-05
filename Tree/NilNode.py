@@ -7,4 +7,7 @@ class NilNode(Node):
     def print(self, i):
         print("%s()" % (" " * i))
 
+    def eval(self, env):
+        return nil_node
+
 nil_node = NilNode()

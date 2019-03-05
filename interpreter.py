@@ -28,6 +28,14 @@ parser.feed("""
             (define (+ x . z)
                 (if (null? z) x
                     (b+ x (apply + z))))
+            (define (max x y)
+                (if (b> x y) x y))
+            (define (map f l)
+                (if (null? l) ()
+                    (cons (f (car l)) (map f (cdr l)))))
+            (define (fold f l ac)
+                (if (null? l) ac
+                    (fold f (cdr l) (f (car l) ac))))
             """)
 root = parser.parse()
 while root != None:
