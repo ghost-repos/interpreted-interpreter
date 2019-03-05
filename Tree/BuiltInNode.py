@@ -18,7 +18,7 @@ class BuiltInNode(Node):
         built_in = self.symbol
         args_length = Node.list_length(args)
         if args_length == 0:
-            if build_in == "newline":
+            if built_in == "newline":
                 print()
                 return nil_node
             else:
