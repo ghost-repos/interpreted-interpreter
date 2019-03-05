@@ -7,7 +7,7 @@ class StringNode(Node):
     def is_string(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         # no indenting
         print(self.val, end="")
 

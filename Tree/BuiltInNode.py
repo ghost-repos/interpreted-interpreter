@@ -14,10 +14,10 @@ class BuiltInNode(Node):
     def is_procedure(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         print("#{Built-in Procedure")
         if self.symbol != None:
-            print(self.symbol)
+            print("%s%s" % (" " * i, self.symbol))
         print("}")
 
     def apply(self, args):

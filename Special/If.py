@@ -9,6 +9,10 @@ class If(Special):
                 else cddr.get_cdr().get_car().eval(env)
 
     def print(self, node, i, p=True):
+        if not p:
+            print()
+            print("%s(" % (" " * i), end="")
+            i += 4
         print("if ", end="") # print if statement
         node.get_cdr().get_car().print(i) # print the condition (regular)
         print(" ", end="")
@@ -18,3 +22,5 @@ class If(Special):
         print(" ", end="")
         f = cddr.get_cdr().get_car()
         f.print(i + 4) # print false body (regular or node)
+        if not p:
+            print(")", end="")

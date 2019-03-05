@@ -7,9 +7,9 @@ class Regular(Special):
         return fun.apply(params)
 
     def print(self, node, i, p=True):
-        print()
-        print("%s" % (" " * i), end="") # indent
         if not p: # if a parenthesis wasnt opened yet
+            print()
+            print("%s" % (" " * i), end="") # indent
             print("(", end="")
             i += 4 # also indent
         while not node.is_null():
@@ -22,4 +22,5 @@ class Regular(Special):
                     print(" . ", end="")
                     node.print(0)
                 break
-        print(")", end="")
+        if not p:
+            print(")", end="")

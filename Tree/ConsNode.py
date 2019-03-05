@@ -39,8 +39,8 @@ class ConsNode(Node):
     def is_pair(self):
         return True
 
-    def print(self, i):
-        self.form.print(self, i, False)
+    def print(self, i, p=False):
+        self.form.print(self, i, p)
 
     def get_car(self):
         return self.car

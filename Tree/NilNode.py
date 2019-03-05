@@ -4,7 +4,7 @@ class NilNode(Node):
     def is_null(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         # no indenting
         print("()", end="")
 

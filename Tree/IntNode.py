@@ -10,7 +10,7 @@ class IntNode(Node):
     def is_number(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         # no indenting
         print(self.val, end="")
 

@@ -10,7 +10,7 @@ class IdentNode(Node):
     def is_symbol(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         # no indenting
         print(self.name, end="")
 

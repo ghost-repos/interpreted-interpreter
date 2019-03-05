@@ -1,6 +1,6 @@
 class Node:
-    def print(self, i):
-        raise NotImplementedError("print(self, i) should be implemented in all subclasses")
+    def print(self, i, p):
+        raise NotImplementedError("print(self, i, p) should be implemented in all subclasses")
 
     def is_bool(self):
         return False

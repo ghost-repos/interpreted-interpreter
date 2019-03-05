@@ -7,9 +7,9 @@ class BooleanNode(Node):
     def is_bool(self):
         return True
 
-    def print(self, i):
+    def print(self, i, p=False):
         # no indenting
-        print("#t") if self.bool_val else print("#f")
+        print("#t", end="") if self.bool_val else print("#f", end="")
 
     def eval(self, env):
         return self
