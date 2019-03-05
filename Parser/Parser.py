@@ -34,11 +34,15 @@ class Parser:
         self.scanner.feed(s)
 
     def parse(self):
-        return self.parseExp(self.scanner.get_next_token())
+        token = self.scanner.get_next_token()
+        if token == None:
+            return None
+        else:
+            return self.parse_exp(token)
 
-    def parseExp(self, token):
+    def parse_exp(self, token):
         if token.get_type() == TokenTypes.LPAREN:
-            return self.parseRest1(self.scanner.get_next_token())
+            return self.parse_rest1(self.scanner.get_next_token())
         elif token.get_type() == TokenTypes.STRING:
             return StringNode(token.get_string_val())
         elif token.get_type() == TokenTypes.IDENT:
@@ -47,7 +51,7 @@ class Parser:
             return IntNode(token.get_int_val())
         elif token.get_type() == TokenTypes.QUOTE:
             return ConsNode(IdentNode("quote"), ConsNode( \
-                    self.parseExp(self.scanner.get_next_token()) \
+                    self.parse_exp(self.scanner.get_next_token()) \
                     , nil_node))
         elif token.get_type() == TokenTypes.TRUE:
             return true_node
@@ -56,15 +60,19 @@ class Parser:
         else:
             raise Exception("unrecognized token received")
 
-    def parseRest1(self, token):
+    def parse_rest1(self, token):
         if token.get_type() == TokenTypes.RPAREN:
             return nil_node
         else:
-            return ConsNode(self.parseExp(token), self.parseRest2( \
+            return ConsNode(self.parse_exp(token), self.parse_rest2( \
                     self.scanner.get_next_token()))
 
-    def parseRest2(self, token):
+    def parse_rest2(self, token):
         if token.get_type() == TokenTypes.DOT:
-            return self.parseExp(self.scanner.get_next_token())
+            ret = self.parse_exp(self.scanner.get_next_token())
+            ty = self.scanner.get_next_token().get_type()
+            if ty != TokenTypes.RPAREN:
+                raise Exception("expected RPAREN got %s" % ty)
+            return ret
         else:
-            return self.parseRest1(token)
+            return self.parse_rest1(token)

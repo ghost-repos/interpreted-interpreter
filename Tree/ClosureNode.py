@@ -20,7 +20,7 @@ class ClosureNode(Node):
         env = Environment(self.env)
 
         while not params.is_null():
-            if not params.is_pair():
+            if not params.is_pair(): # n-ary function ?
                 env.define(params, args)
                 break
             else:

@@ -79,4 +79,4 @@ class BuiltInNode(Node):
             else:
                 raise Exception("unknown builtin function with 2 params")
 
-        raise Exception("unknown builtin function")
+        raise Exception("unknown builtin function %s" % built_in)

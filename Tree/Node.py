@@ -49,10 +49,10 @@ class Node:
 
     @staticmethod
     def same_length_lists(params, args):
-        if params.is_null():
+        if not params.is_pair(): # n-ary function
+            return True
+        elif params.is_null():
             return args.is_null()
-        elif args.is_null():
-            return not params.is_pair()
         else:
             return Node.same_length_lists(params.get_cdr(), args.get_cdr())
 

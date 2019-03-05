@@ -5,6 +5,7 @@ class Let(Special):
     def eval(self, node, env):
         env = Environment(env)
         Let.add_defs(node, env)
+        return Special.eval_body(node.get_cdr().get_cdr(), env)
 
     @staticmethod
     def add_defs(node, env):

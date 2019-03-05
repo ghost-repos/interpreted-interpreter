@@ -18,20 +18,32 @@ for built_in in built_ins:
 
 # some more builtins for ease
 parser.feed("""
-            (define (b> x y)
+            (define (b>= x y)
                 (if (b< x y) #f #t))
+            (define (b> x y)
+                (if (b>= x y)
+                    (if (b= x y) #f #t) #f))
+            (define (b<= x y)
+                (if (b> x y) #f #t))
+            (define (+ x . z)
+                (if (null? z) x
+                    (b+ x (apply + z))))
             """)
-parser.parse().eval(built_in_env)
+root = parser.parse()
+while root != None:
+    root.eval(built_in_env)
+    root = parser.parse()
 
 global_env = Environment(built_in_env)
 
-parser.feed("(define (die x) 2)")
-parser.parse().eval(global_env)
-
-try:
-    while True:
+while True:
+    try:
         parser.feed(input())
         root = parser.parse()
-        root.eval(global_env).print(0)
-except KeyboardInterrupt:
-    sys.exit(0)
+        while root != None:
+            root.eval(global_env).print(0)
+            root = parser.parse()
+    except KeyboardInterrupt:
+        sys.exit(0)
+    except Exception as e:
+        print(e)
