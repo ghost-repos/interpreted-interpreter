@@ -8,11 +8,8 @@ class BooleanNode(Node):
         return True
 
     def print(self, i):
-        print("%s" % (" " * i), end="")
-        if self.bool_val:
-            print("#t")
-        else:
-            print("#f")
+        # no indenting
+        print("#t") if self.bool_val else print("#f")
 
     def eval(self, env):
         return self

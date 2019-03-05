@@ -32,3 +32,6 @@ class Special:
     def eval_body(node, env):
         result = Special.eval_list(node, env)
         return Special.reverse(result).get_car()
+
+    def print(self, node, i, p=True):
+        raise Exception("this special form does not have a print method")

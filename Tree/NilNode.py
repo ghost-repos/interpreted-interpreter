@@ -5,7 +5,8 @@ class NilNode(Node):
         return True
 
     def print(self, i):
-        print("%s()" % (" " * i))
+        # no indenting
+        print("()", end="")
 
     def eval(self, env):
         return nil_node

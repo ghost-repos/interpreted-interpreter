@@ -11,7 +11,8 @@ class IdentNode(Node):
         return True
 
     def print(self, i):
-        print("%s%s" % (" " * i, self.name))
+        # no indenting
+        print(self.name, end="")
 
     def eval(self, env):
         return env.lookup(self)

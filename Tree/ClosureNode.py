@@ -11,6 +11,13 @@ class ClosureNode(Node):
     def is_procedure(self):
         return True
 
+    def print(self, i):
+        # no indenting
+        print("#{Procedure")
+        if self.f != None:
+            self.f.print(i + 4)
+        print("}")
+
     def apply(self, args):
         from Tree.ConsNode import ConsNode
         params = self.f.get_cdr().get_car()

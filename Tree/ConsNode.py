@@ -40,8 +40,7 @@ class ConsNode(Node):
         return True
 
     def print(self, i):
-        self.car.print(i)
-        self.cdr.print(i + 4)
+        self.form.print(self, i, False)
 
     def get_car(self):
         return self.car

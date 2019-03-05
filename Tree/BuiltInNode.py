@@ -14,6 +14,12 @@ class BuiltInNode(Node):
     def is_procedure(self):
         return True
 
+    def print(self, i):
+        print("#{Built-in Procedure")
+        if self.symbol != None:
+            print(self.symbol)
+        print("}")
+
     def apply(self, args):
         built_in = self.symbol
         args_length = Node.list_length(args)

@@ -8,7 +8,8 @@ class StringNode(Node):
         return True
 
     def print(self, i):
-        print("%s%s" % (" " * i, self.val))
+        # no indenting
+        print(self.val, end="")
 
     def eval(self, env):
         return self
