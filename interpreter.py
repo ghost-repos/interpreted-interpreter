@@ -25,17 +25,37 @@ parser.feed("""
                     (if (b= x y) #f #t) #f))
             (define (b<= x y)
                 (if (b> x y) #f #t))
+            """
+            # example of n-ary addition
+            """
             (define (+ x . z)
                 (if (null? z) x
                     (b+ x (apply + z))))
-            (define (max x y)
-                (if (b> x y) x y))
+            """
+            # a few higher order functions
+            """
             (define (map f l)
                 (if (null? l) ()
                     (cons (f (car l)) (map f (cdr l)))))
             (define (fold f l ac)
                 (if (null? l) ac
                     (fold f (cdr l) (f (car l) ac))))
+            """
+            # sort that takes n-ary amount of numbers
+            # (sort 1 9 28 1 3)
+            # (apply sort '(1 99 71 53))
+            """
+            (define (sort . z)
+                (define (merge a . z)
+                    (define (bmerge a b)
+                        (if (null? b) a
+                            (if (null? a) b
+                                (if (b< (car a) (car b))
+                                    (cons (car a) (bmerge (cdr a) b))
+                                    (cons (car b) (bmerge a (cdr b)))))))
+                    (if (null? z) a
+                        (apply merge (cons (bmerge a (car z)) (cdr z)))))
+                (apply merge (map (lambda (x) (cons x ())) z)))
             """)
 root = parser.parse()
 while root != None:
