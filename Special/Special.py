@@ -13,6 +13,7 @@ class Special:
 
     @staticmethod
     def append_lists(node1, node2):
+        from Tree.ConsNode import ConsNode
         if node1.is_null():
             return node2
         else:
@@ -20,10 +21,11 @@ class Special:
 
     @staticmethod
     def reverse(node):
-        if node.is_null() or t == None:
+        from Tree.ConsNode import ConsNode
+        if node.is_null() or node == None:
             return nil_node
         else:
-            return Special.append_lists(reverse(node.get_cdr()), ConsNode( \
+            return Special.append_lists(Special.reverse(node.get_cdr()), ConsNode( \
                     node.get_car(), nil_node))
 
     @staticmethod

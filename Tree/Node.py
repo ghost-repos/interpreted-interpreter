@@ -29,10 +29,10 @@ class Node:
     def get_cdr(self):
         raise Exception("cdr is not returning a pair")
 
-    def set_car(self):
+    def set_car(self, a):
         raise Exception("argument of set_car! is not a pair")
 
-    def set_cdr(self):
+    def set_cdr(self, a):
         raise Exception("argument of set_cdr! is not a pair")
 
     def get_name(self):

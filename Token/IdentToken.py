@@ -8,4 +8,3 @@ class IdentToken(Token):
 
     def get_name(self):
         return self.name
-

@@ -80,32 +80,3 @@ class BuiltInNode(Node):
                 raise Exception("unknown builtin function with 2 params")
 
         raise Exception("unknown builtin function")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

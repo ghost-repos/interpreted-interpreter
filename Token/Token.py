@@ -6,10 +6,10 @@ class Token:
         return self.type
 
     def get_int_val(self):
-        return 0
+        raise Exception("this token does not have an int value")
 
     def get_string_val(self):
-        return ""
+        raise Exception("this token does not have a string value")
 
     def get_name(self):
-        return ""
+        raise Exception("this token does not have a name")
