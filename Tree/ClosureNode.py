@@ -13,10 +13,10 @@ class ClosureNode(Node):
 
     def print(self, i, p=False):
         # no indenting
-        print("#{Procedure")
+        print("%s#{Procedure" % (" " * i))
         if self.f != None:
             self.f.print(i + 4)
-        print("}")
+        print("%s}" % (" " * i))
 
     def apply(self, args):
         from Tree.ConsNode import ConsNode

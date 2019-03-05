@@ -51,6 +51,8 @@ class Node:
     def same_length_lists(params, args):
         if not params.is_pair(): # n-ary function
             return True
+        elif args.is_null():
+            return not params.is_pair()
         elif params.is_null():
             return args.is_null()
         else:

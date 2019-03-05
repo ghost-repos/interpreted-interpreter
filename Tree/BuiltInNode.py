@@ -15,10 +15,10 @@ class BuiltInNode(Node):
         return True
 
     def print(self, i, p=False):
-        print("#{Built-in Procedure")
+        print("%s#{Built-in Procedure" % (" " * i))
         if self.symbol != None:
-            print("%s%s" % (" " * i, self.symbol))
-        print("}")
+            print("%s%s" % (" " * i + 4, self.symbol))
+        print("%s}" % (" " * i))
 
     def apply(self, args):
         built_in = self.symbol

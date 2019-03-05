@@ -50,6 +50,7 @@ while True:
         root = parser.parse()
         while root != None:
             root.eval(global_env).print(0)
+            print()
             root = parser.parse()
     except KeyboardInterrupt:
         sys.exit(0)
