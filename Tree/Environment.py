@@ -3,6 +3,12 @@ class Environment:
         self.parent_env = env
         self.frame = {}
 
+    def print(self, i, p=True):
+        print("%s#{Environment" % (" " * i))
+        for k in self.frame:
+            print("%s%s=%s" % (" " * (i + 4), k, self.frame[k]))
+        print("%s}" % (" " * i))
+
     def find(self, node):
         var = node.get_name()
         if var in self.frame:

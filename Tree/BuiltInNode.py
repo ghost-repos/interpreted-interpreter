@@ -5,6 +5,15 @@ from Tree.NilNode import nil_node
 from Tree.BooleanNode import true_node, false_node
 
 class BuiltInNode(Node):
+
+    built_in_env = None
+    global_env = None
+
+    @staticmethod
+    def set_starting_env(b, g):
+        BuiltInNode.built_in_env = b
+        BuiltInNode.global_env = g
+
     def __init__(self, s):
         self.symbol = s
 
@@ -17,7 +26,7 @@ class BuiltInNode(Node):
     def print(self, i, p=False):
         print("%s#{Built-in Procedure" % (" " * i))
         if self.symbol != None:
-            print("%s%s" % (" " * i + 4, self.symbol))
+            print("%s%s" % (" " * (i + 4), self.symbol))
         print("%s}" % (" " * i))
 
     def apply(self, args):
@@ -27,6 +36,10 @@ class BuiltInNode(Node):
             if built_in == "newline":
                 print()
                 return nil_node
+            elif built_in == "builtin-env":
+                return BuiltInNode.built_in_env
+            elif built_in == "global-env":
+                return BuiltInNode.global_env
             else:
                 raise Exception("unknown builtin function with 0 params")
 
@@ -56,7 +69,9 @@ class BuiltInNode(Node):
 
         arg2 = args.get_cdr().get_car()
         if args_length == 2:
-            if built_in == "b-":
+            if built_in == "eval":
+                return arg1.eval(arg2)
+            elif built_in == "b-":
                 return IntNode(arg1.get_value() - arg2.get_value())
             elif built_in == "b+":
                 return IntNode(arg1.get_value() + arg2.get_value())

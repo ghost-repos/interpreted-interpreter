@@ -15,6 +15,7 @@ class Regular(Special):
         while not node.is_null():
             node.get_car().print(i)
             node = node.get_cdr()
+
             if node.is_pair():
                 print(" ", end="")
             else:

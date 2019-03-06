@@ -6,7 +6,11 @@ class Lambda(Special):
         return ClosureNode(node, env)
 
     def print(self, node, i, p=True):
-        print("%s(lambda " % (" " * i), end="")
+        if not p:
+            print()
+            print("%s(" % (" " * i), end="")
+        print("lambda ", end="")
         node.get_cdr().get_car().print(i + 4) # args list
-        node.get_cdr().get_cdr().print(i + 8, True) # body
-        print(")")
+        node.get_cdr().get_cdr().print(i + 4, True) # body
+        if not p:
+            print(")", end="")

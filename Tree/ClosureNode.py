@@ -13,9 +13,10 @@ class ClosureNode(Node):
 
     def print(self, i, p=False):
         # no indenting
-        print("%s#{Procedure" % (" " * i))
+        print("%s#{Procedure" % (" " * i), end="")
         if self.f != None:
             self.f.print(i + 4)
+            print()
         print("%s}" % (" " * i))
 
     def apply(self, args):

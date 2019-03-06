@@ -11,7 +11,8 @@ builder = TreeBuilder()
 built_in_env = Environment()
 built_ins = ["newline", "write", "car", "cdr", "null?", "pair?", "procedure?",
         "symbol?", "number?", "display", "b-", "b+", "b*", "b/", "b=", "b<",
-        "eq?", "cons", "apply", "eval", "set-car!", "set-cdr!"]
+        "eq?", "cons", "apply", "eval", "set-car!", "set-cdr!", "builtin-env",
+        "global-env"]
 
 for built_in in built_ins:
     built_in_env.define(IdentNode(built_in), BuiltInNode(built_in))
@@ -46,13 +47,13 @@ parser.feed("""
             # (apply sort '(1 99 71 53))
             """
             (define (sort . z)
+                (define (bmerge a b)
+                    (if (null? b) a
+                        (if (null? a) b
+                            (if (b< (car a) (car b))
+                                (cons (car a) (bmerge (cdr a) b))
+                                (cons (car b) (bmerge a (cdr b)))))))
                 (define (merge a . z)
-                    (define (bmerge a b)
-                        (if (null? b) a
-                            (if (null? a) b
-                                (if (b< (car a) (car b))
-                                    (cons (car a) (bmerge (cdr a) b))
-                                    (cons (car b) (bmerge a (cdr b)))))))
                     (if (null? z) a
                         (apply merge (cons (bmerge a (car z)) (cdr z)))))
                 (apply merge (map (lambda (x) (cons x ())) z)))
@@ -63,6 +64,8 @@ while root != None:
     root = parser.parse()
 
 global_env = Environment(built_in_env)
+
+BuiltInNode.set_starting_env(built_in_env, global_env)
 
 while True:
     try:
