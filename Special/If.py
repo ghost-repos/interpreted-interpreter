@@ -18,7 +18,7 @@ class If(Special):
         print(" ", end="")
         cddr = node.get_cdr().get_cdr()
         t = cddr.get_car()
-        t.print(i) # print true body (regular or node)
+        t.print(i + 4) # print true body (regular or node)
         print(" ", end="")
         f = cddr.get_cdr().get_car()
         f.print(i + 4) # print false body (regular or node)

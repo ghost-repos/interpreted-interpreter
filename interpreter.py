@@ -17,7 +17,9 @@ built_ins = ["newline", "write", "car", "cdr", "null?", "pair?", "procedure?",
 for built_in in built_ins:
     built_in_env.define(IdentNode(built_in), BuiltInNode(built_in))
 
-# some more builtins for ease
+global_env = Environment(built_in_env)
+
+# define a few methods based on builtins
 parser.feed("""
             (define (b>= x y)
                 (if (b< x y) #f #t))
@@ -60,10 +62,8 @@ parser.feed("""
             """)
 root = parser.parse()
 while root != None:
-    root.eval(built_in_env)
+    root.eval(global_env)
     root = parser.parse()
-
-global_env = Environment(built_in_env)
 
 BuiltInNode.set_starting_env(built_in_env, global_env)
 
