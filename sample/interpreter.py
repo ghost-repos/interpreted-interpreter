@@ -1,4 +1,6 @@
-import sys
+import sys, os
+
+sys.path.append(os.path.join(sys.path[0], "../interpreted-interpreter"))
 
 from Parser.Parser import Parser
 from Tree.TreeBuilder import TreeBuilder
