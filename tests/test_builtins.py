@@ -1,37 +1,5 @@
-import sys, os
-sys.path.append(os.path.join(sys.path[0], "../interpreted-interpreter"))
-
-from Parser.Parser import Parser
-from Tree.TreeBuilder import TreeBuilder
-from Tree.Environment import Environment
-from Tree.BuiltInNode import BuiltInNode
-from Tree.IdentNode import IdentNode
-
-def setup_parser():
-    parser = Parser()
-    builder = TreeBuilder()
-    built_in_env = Environment()
-    built_ins = ["newline", "write", "car", "cdr", "null?", "pair?", "procedure?",
-            "symbol?", "number?", "display", "b-", "b+", "b*", "b/", "b=", "b<",
-            "eq?", "cons", "apply", "eval", "set-car!", "set-cdr!", "builtin-env",
-            "global-env"]
-    for built_in in built_ins:
-        built_in_env.define(IdentNode(built_in), BuiltInNode(built_in))
-    global_env = Environment(built_in_env)
-    BuiltInNode.set_starting_env(built_in_env, global_env)
-    return (parser, global_env)
-
-def eval_and_print(s):
-    (parser, global_env) = setup_parser()
-    parser.feed(s)
-    parser.parse().eval(global_env).print(0)
-
-def assert_stripped_output_is(capsys, s):
-    (out, err) = capsys.readouterr()
-    assert out.strip() == s
-
-
 import pytest, random
+from _test_utils import eval_and_print, assert_stripped_output_is
 
 class TestBuiltins(object):
     @pytest.mark.parametrize("v1, v2", [(x, y) for x in range(10) for y in range(5)])
